@@ -308,6 +308,8 @@ module.exports = function(webpackEnv) {
         reducers: resolveApp('src/reducers'),
         pages: resolveApp('src/pages'),
         assets: resolveApp('src/assets'),
+        hocs: resolveApp('src/hocs'),
+        helpers: resolveApp('src/utils/helpers'),
 
         // Allows for better profiling with ReactDevTools
         ...(isEnvProductionProfile && {

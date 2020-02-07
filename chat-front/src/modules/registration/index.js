@@ -1,125 +1,80 @@
-import './style.scss';
-import React from 'react';
-import {
-    Form,
-    Input,
-    Icon,
-    Button,
-} from 'antd';
-import { Link } from 'react-router-dom';
+import "./style.scss";
+import React from "react";
+import { Form, Button } from "antd";
+import { Link } from "react-router-dom";
+import withRegistrationFormik from "hocs/withRegistrationFormik";
+import FormInput from "components/form-input";
+import ConfirmRegistration from 'components/email-confirm-registration';
 
-class Registration extends React.Component {
-    state = {
-        confirmDirty: false,
-    };
+function Registration(props) {
+  const isSuccess = false;
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    isValid,
+    dirty
+  } = props;
 
-    handleSubmit = e => {
-        e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-        });
-    };
+  console.log(!isValid || !dirty);
 
-    handleConfirmBlur = e => {
-        const { value } = e.target;
-        this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-    };
-
-    compareToFirstPassword = (rule, value, callback) => {
-        const { form } = this.props;
-        if (value && value !== form.getFieldValue('password')) {
-            callback('Two passwords that you enter is inconsistent!');
-        } else {
-            callback();
-        }
-    };
-
-    validateToNextPassword = (rule, value, callback) => {
-        const { form } = this.props;
-        if (value && this.state.confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
-        }
-        callback();
-    };
-
-    render() {
-        const { getFieldDecorator } = this.props.form;
-        const isSuccess = false;
-
-        return (
-            <>
-                <h1>Registration</h1>
-                {!isSuccess ? (<Form onSubmit={this.handleSubmit}>
-                    <Form.Item>
-                        {getFieldDecorator('email', {
-                            rules: [
-                                {
-                                    type: 'email',
-                                    message: 'The input is not valid E-mail!',
-                                },
-                                {
-                                    required: true,
-                                    message: 'Please input your E-mail!',
-                                },
-                            ],
-                        })(<Input
-                            prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            type="email"
-                            placeholder="Email" />)}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator('username', {
-                            rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
-                        })(<Input
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            type="username"
-                            placeholder="Username"
-                        />)}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator('password', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please input your password!',
-                                },
-                                {
-                                    validator: this.validateToNextPassword,
-                                },
-                            ],
-                        })(<Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Password" />)}
-                    </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator('confirm', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please confirm your password!',
-                                },
-                                {
-                                    validator: this.compareToFirstPassword,
-                                },
-                            ],
-                        })(<Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} onBlur={this.handleConfirmBlur} placeholder="Confirm your password" />)}
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            Register
-                    </Button>
-                        <Link to="/login">Already have account?</Link>
-                    </Form.Item>
-                </Form>) :
-                    (<div className="registration">
-                        <Icon type="exclamation-circle" style={{color: 'blue', fontSize: '20px'}}/>
-                        <h3>Confirm your account</h3>
-                        <p>Activation link was sent to your email. Pls, follow the link and confirm registration procedure.</p>
-                    </div>)}
-            </>
-        );
-    }
+  return (
+    <>
+      <h1>Registration</h1>
+      {!isSuccess ? (
+        <Form onSubmit={handleSubmit}>
+          <FormInput
+            validity={{ touched, errors, key: "email" }}
+            iconType="mail"
+            value={values.email}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder="Email"
+          />
+          <FormInput
+            validity={{ touched, errors, key: "name" }}
+            iconType="user"
+            value={values.name}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder="Username"
+          />  
+          <FormInput
+            validity={{ touched, errors, key: "password" }}
+            iconType="lock"
+            type="password"
+            value={values.password}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder="Password"
+          />  
+          <FormInput
+            validity={{ touched, errors, key: "confirmPassword" }}
+            iconType="lock"
+            type="password"
+            value={values.confirmPassword}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder="Confirm your password"
+          /> 
+          <Form.Item>
+            <Button
+              disabled={!isValid || !dirty}
+              type="primary"
+              htmlType="submit"
+            >
+              Register
+            </Button>
+            <Link to="/login">Already have account?</Link>
+          </Form.Item>
+        </Form>
+      ) : <ConfirmRegistration/>}
+    </>
+  );
 }
 
-const WrappedRegistrationForm = Form.create({ name: 'register' })(Registration);
-export default WrappedRegistrationForm;
+const WrappedRegistrationForm = Form.create({ name: "register" })(Registration);
+export default withRegistrationFormik(WrappedRegistrationForm);

@@ -11,7 +11,7 @@ function Message({text, date, img, isRead, isMe}) {
       <div className={classNames('message', classes, 'clear-fix')} >
         <div className="message__content">
           <div className="message__icon">
-            <img src={img}></img>
+            <img src={img} alt="avatar"></img>
           </div>
           <div className="message__text">{text}</div>
           <Icon isRead={isRead}></Icon>
