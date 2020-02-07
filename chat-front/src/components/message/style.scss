@@ -1,0 +1,75 @@
+$imgSize: 25px;
+
+.message {
+  $self: &;
+  max-width: 50%;
+  padding-bottom: 10px;
+
+  &__content {
+    display: flex;
+    height: 85%;
+
+    #{$self}__icon {
+      display: flex;
+      align-items: flex-end;
+      padding-right: 10px;
+
+      img {
+        width: $imgSize;
+        height: $imgSize;
+      }
+    }
+
+    #{$self}__text {
+      text-align: left;
+      line-height: 20px;
+      background-color: #0e9aa7;
+      color: white;
+      border-radius: 10px 10px 10px 0;
+      padding: 10px;
+    }
+  }
+
+  &__time {
+    text-align: left;
+    padding-left: $imgSize + 10px;
+  }
+
+  &__icon--is-read {
+    display: flex;
+    align-items: flex-end;
+    padding-left: 7px;
+  }
+
+  &--is-me {
+    float: right;
+
+    .message__content {
+      flex-direction: row-reverse;
+
+      #{$self}__icon {
+        padding-left: 10px;
+        padding-right: 0px;
+      }
+
+      #{$self}__icon--is-read {
+        padding-right: 7px;
+      }
+    }
+
+    #{$self}__time {
+      text-align: right;
+      padding-right: $imgSize + 10px;
+      padding-left: 0px;
+    }
+
+    #{$self}__text {
+        border-radius: 10px 10px 0px 10px;
+        background-color: #3f5b5e;
+    }
+  }
+}
+
+.clear-fix {
+    clear: both;
+}

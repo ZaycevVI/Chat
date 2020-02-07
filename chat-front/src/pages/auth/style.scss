@@ -1,0 +1,15 @@
+.auth {
+    max-width: 500px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+
+    .auth-container {
+        min-width: 400px;
+        border: 1px solid rgb(197, 193, 193);
+        border-radius: 2%;
+        padding: 30px;
+    }
+}
