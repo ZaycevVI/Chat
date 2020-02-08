@@ -19,8 +19,6 @@ function Registration(props) {
     dirty
   } = props;
 
-  console.log(!isValid || !dirty);
-
   return (
     <>
       <h1>Registration</h1>

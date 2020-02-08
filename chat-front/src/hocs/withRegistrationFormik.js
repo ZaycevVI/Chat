@@ -1,11 +1,11 @@
 import { withFormik } from "formik";
-import validate from "helpers/form-validator";
+import {registrationValidation} from "helpers/form-validator";
 
 const withRegistrationFormik = withFormik({
   mapPropsToValues: () => ({ name: "", password: "", confirmPassword: "", email: "" }),
   validate: values => {
     const errors = {};
-    validate(values, errors);
+    registrationValidation(values, errors);
 
     return errors;
   },

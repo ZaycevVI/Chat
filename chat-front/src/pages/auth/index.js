@@ -8,7 +8,7 @@ function Auth() {
     return (
         <div className="auth">
             <div className="auth-container">
-            <Route exact path={['/', '/login']} component={Login}/>
+            <Route exact path={'/login'} component={Login}/>
             <Route exact path='/registration' component={Registration}/>
                 {/* <Login /> */}
                 {/* <Registration /> */}

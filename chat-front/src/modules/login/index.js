@@ -22,12 +22,12 @@ function LoginForm(props) {
       <h1>Login to your account</h1>
       <Form className="login-form" onSubmit={handleSubmit}>
         <FormInput
-          validity={{ touched, errors, key: "name" }}
-          iconType="user"
-          value={values.name}
+          validity={{ touched, errors, key: "email" }}
+          iconType="mail"
+          value={values.email}
           onBlur={handleBlur}
           onChange={handleChange}
-          placeholder="Username"
+          placeholder="Email"
         />
         <FormInput
           validity={{ touched, errors, key: "password" }}
