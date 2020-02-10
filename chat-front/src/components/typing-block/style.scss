@@ -1,56 +1,23 @@
-.typing-content {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 85px;
-  justify-content: space-around;
-  display: flex;
-}
-
-.jump1,
-.jump2,
-.jump3,
-.jump4,
-.jump5 {
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
-  background-color: gray;
-}
-
-.jump1 {
-  animation: typing 1.5s linear infinite;
-  animation-delay: 01.1s;
-}
-
-.jump2 {
-  animation: typing 1.5s linear infinite;
-  animation-delay: 01.2s;
-}
-
-.jump3 {
-  animation: typing 1.5s linear infinite;
-  animation-delay: 01.3s;
-}
-
-@keyframes typing {
+@keyframes changeLetter {
   0% {
-    transform: translateY(0px);
+    content: ".";
   }
-
-  25% {
-    transform: translateY(0px);
+  50% {
+    content: "..";
   }
-
-  45% {
-    transform: translateY(0px);
-  }
-
-  75% {
-    background-color: white;
-    transform: translateY(0px);
-  }
-
   100% {
-    transform: translateY(0px);
+    content: "...";
+  }
+}
+
+.typing {
+  padding-left: 15px;
+  text-align: left;
+  .typing-animation {
+    &:after {
+      animation: changeLetter 1s linear infinite alternate;
+      display: inline;
+      content: "";
+    }
   }
 }

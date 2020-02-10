@@ -5,7 +5,7 @@ $imgSize: 25px;
   max-width: 50%;
   padding-bottom: 10px;
 
-  &__content {
+  &__info {
     display: flex;
     height: 85%;
 
@@ -14,19 +14,30 @@ $imgSize: 25px;
       align-items: flex-end;
       padding-right: 10px;
 
-      img {
+      .random-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+      }
+
+      img,
+      .random-avatar {
         width: $imgSize;
         height: $imgSize;
+        border-radius: 30px;
       }
     }
 
-    #{$self}__text {
+    #{$self}__content {
       text-align: left;
       line-height: 20px;
       background-color: #0e9aa7;
       color: white;
       border-radius: 10px 10px 10px 0;
-      padding: 10px;
     }
   }
 
@@ -44,7 +55,7 @@ $imgSize: 25px;
   &--is-me {
     float: right;
 
-    .message__content {
+    .message__info {
       flex-direction: row-reverse;
 
       #{$self}__icon {
@@ -63,13 +74,14 @@ $imgSize: 25px;
       padding-left: 0px;
     }
 
-    #{$self}__text {
-        border-radius: 10px 10px 0px 10px;
-        background-color: #3f5b5e;
+    #{$self}__content {
+      border-radius: 10px 10px 0px 10px;
+      background-color: #3f5b5e;
+      position: relative;
     }
   }
 }
 
 .clear-fix {
-    clear: both;
+  clear: both;
 }
