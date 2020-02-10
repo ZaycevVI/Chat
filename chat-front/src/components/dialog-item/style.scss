@@ -1,59 +1,71 @@
 .dialog__item {
-    $self: &;
-    display: flex;
-    margin-bottom: 15px;
-    padding-left: 15px;
-    align-items: center;
-    padding-top: 5px;
-    
-    &-avatar {
-        img {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
-    }
+  $self: &;
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+  padding: 5px 15px;
 
-    &-date {
-        font-size: 10px;
-        opacity: 0.7;
-    }
+  &-online {
+    width: 10px;
+    height: 10px;
+    border: white;
+    border-radius: 20px;
+    background: rgb(88, 247, 82);
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+  }
 
-    &-status {
-        float: right;
-        margin-top: 10px;
-    }
+  &-avatar {
+    position: relative;
 
-    &-user-name {
-        text-align: left;
-        font-weight: bold;
-        font-size: 14px;
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
     }
+  }
 
-    &-info {
-        align-self: flex-start;
-    }
+  &-date {
+    font-size: 10px;
+    opacity: 0.7;
+  }
 
-    &-unread {
-        font-size: 10px;
-        width: 15px;
-        height: 15px;
-        border: white 1px;
-        border-radius: 20px;
-        color: white;
-        background: rgb(247, 82, 82);
-    }
+  &-status {
+    float: right;
+    margin-top: 10px;
+  }
 
-    &-user-text {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        opacity: 0.7;
-        font-size: 14px;
-    }
+  &-user-name {
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+  }
 
-    &-message {
-        overflow: hidden;
-        padding-right: 15px;
-    }
+  &-info {
+    align-self: flex-start;
+  }
+
+  &-unread {
+    font-size: 10px;
+    width: 15px;
+    height: 15px;
+    border: white;
+    border-radius: 20px;
+    color: white;
+    background: rgb(247, 82, 82);
+  }
+
+  &-user-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.7;
+    font-size: 14px;
+  }
+
+  &-message {
+    overflow: hidden;
+    padding-right: 15px;
+  }
 }
