@@ -9,23 +9,12 @@ $imgSize: 25px;
     display: flex;
     height: 85%;
 
-    #{$self}__icon {
+    #{$self}__avatar {
       display: flex;
       align-items: flex-end;
       padding-right: 10px;
 
-      .random-avatar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 12px;
-        line-height: 14px;
-        text-align: center;
-      }
-
-      img,
-      .random-avatar {
+      img {
         width: $imgSize;
         height: $imgSize;
         border-radius: 30px;
@@ -46,10 +35,15 @@ $imgSize: 25px;
     padding-left: $imgSize + 10px;
   }
 
-  &__icon--is-read {
+  &__icon {
     display: flex;
     align-items: flex-end;
-    padding-left: 7px;
+    padding: 0 7px;
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
   }
 
   &--is-me {
@@ -58,13 +52,9 @@ $imgSize: 25px;
     .message__info {
       flex-direction: row-reverse;
 
-      #{$self}__icon {
+      #{$self}__avatar {
         padding-left: 10px;
         padding-right: 0px;
-      }
-
-      #{$self}__icon--is-read {
-        padding-right: 7px;
       }
     }
 

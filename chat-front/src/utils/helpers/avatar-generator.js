@@ -15,8 +15,8 @@ function toCharCode(char) {
 export default id => {
   const [r, g, b] = id.split("").map(toCharCode);
 
-  const color = tinycolor({ r, g, b }).toHexString();
-  const colorLight = tinycolor({ r, g, b }).lighten().toHexString();
+  const color = tinycolor({ r, g, b }).lighten(20).saturate(20).toHexString();
+  const colorLight = tinycolor({ r, g, b }).lighten(40).saturate(40).toHexString();
 
   return [
     color,

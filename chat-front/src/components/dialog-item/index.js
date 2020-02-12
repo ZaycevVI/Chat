@@ -2,12 +2,14 @@ import React from "react";
 import IconRead from "components/icon-read";
 import "./style.scss";
 import { getDateForPreview } from "helpers/date";
+import Avatar from 'components/avatar';
+import classNames from 'classnames';
 
-function DialogItem({ message, isMyLast, unreadAmount = 0 }) {
+function DialogItem({ message, isMyLast, isSelected, onClick }) {
   return (
-    <div className="dialog__item">
+    <div className={classNames("dialog__item", {"dialog__item--selected": isSelected})} onClick={() => {onClick(message.user)}}>
       <div className="dialog__item-avatar">
-        <img src={message.user.avatar} alt="avatar" />
+        <Avatar user={message.user}></Avatar>
         {message.user.isOnline && <div className="dialog__item-online"></div>}
       </div>
       <div className="dialog__item-message">
@@ -20,7 +22,7 @@ function DialogItem({ message, isMyLast, unreadAmount = 0 }) {
           {isMyLast && <IconRead isRead={message.isRead}></IconRead>}
           {!isMyLast && !message.isRead && (
             <div className="dialog__item-unread">
-              {unreadAmount > 9 ? `+9` : unreadAmount}
+              {message.unreadAmount > 9 ? `+9` : message.unreadAmount}
             </div>
           )}
         </div>

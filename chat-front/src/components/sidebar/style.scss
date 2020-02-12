@@ -1,0 +1,38 @@
+$border: rgb(223, 212, 212);
+
+.chat__sidebar {
+    width: 30%;
+
+      &-search {
+        margin: 30px 10%;
+
+        .ant-input {
+          background-color: rgba(245, 241, 241, 0.733);
+        }
+      }
+
+      &-header {
+        display: flex;
+        align-items: center;
+        height: 60px;
+        padding: 20px;
+        justify-content: space-between;
+        border-bottom: 1px solid $border;
+      }
+
+      &-dialogs {
+        overflow: auto;
+        position: relative;
+        height: calc(100% - 92px - 59px);
+
+        
+      }
+
+      &-teams {
+        i {
+          padding-right: 5px;
+        }
+      }
+
+      border-right: 1px solid $border;
+}

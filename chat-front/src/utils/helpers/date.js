@@ -8,4 +8,11 @@ export const getDateForPreview = date => {
     : start.format("HH:mm");
 };
 
+export const toTime = seconds => {
+  return moment()
+    .startOf("day")
+    .seconds(seconds)
+    .format("mm:ss");
+}
+
 export const getDateForMsg = date => moment(date).fromNow();

@@ -1,18 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import Bubble from "components/message/bubble";
 import "./style.scss";
-import WaveSvg from "assets/wave.svg";
-import PlaySvg from "assets/play.svg";
-import PauseSvg from "assets/pause.svg";
+import WaveSvg from "assets/img/wave.svg";
+import PlaySvg from "assets/img/play.svg";
+import PauseSvg from "assets/img/pause.svg";
 import classNames from "classnames";
-import moment from "moment";
-
-function toTime(seconds) {
-  return moment()
-    .startOf("day")
-    .seconds(seconds)
-    .format("mm:ss");
-}
+import { toTime } from "helpers/date";
 
 function getSvg(isPlaying) {
   return isPlaying ? PauseSvg : PlaySvg;

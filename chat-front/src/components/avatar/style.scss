@@ -1,0 +1,18 @@
+$imgSize: 25px;
+
+.random-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+  }
+
+  img,
+  .random-avatar {
+    width: $imgSize;
+    height: $imgSize;
+    border-radius: 30px;
+  }

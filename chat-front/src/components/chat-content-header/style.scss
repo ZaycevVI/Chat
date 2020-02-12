@@ -1,0 +1,52 @@
+@import '../../styles/variables';
+
+.chat__content-header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid $border;
+
+  &::before {
+    content: "";
+    display: block;
+  }
+
+  .anticon {
+    align-self: center;
+  }
+}
+
+.chat__content-user-name {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+.chat__content-user-status {
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      margin-right: 5px;
+      margin-left: -5px;
+      background-color: #a19e9e;
+      border-radius: 30px;
+    }
+
+    opacity: 0.7;
+    font-size: 12px;
+  }
+
+  .chat__content-user-status--online {
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      margin-right: 5px;
+      margin-left: -5px;
+      background-color: #58f752;
+      border-radius: 30px;
+    }
+  }

@@ -1,10 +1,10 @@
 import React from "react";
-import ReadSvg from "assets/readed.svg";
-import NoReadSvg from "assets/noreaded.svg";
+import ReadSvg from "assets/img/readed.svg";
+import NoReadSvg from "assets/img/noreaded.svg";
 
 function IconRead({ isRead }) {
   return (
-    <div className="message__icon--is-read">
+    <div className="message__icon">
       {isRead ? (
         <img src={ReadSvg} alt="Msg was read" />
       ) : (

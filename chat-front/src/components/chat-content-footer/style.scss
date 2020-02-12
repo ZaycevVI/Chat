@@ -1,0 +1,36 @@
+@import '../../styles/variables';
+
+.chat__content-input {
+    border-top: 1px solid $border;
+    display: flex;
+    padding: 20px;
+
+    &-container {
+      display: flex;
+      align-items: center;
+      padding: 0 5px 0 10px;
+      height: 100%;
+      width: 100%;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+
+      .ant-input {
+        text-align: left;
+        border: none;
+      }
+
+      .ant-input:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+      }
+
+      &:hover {
+        border: 1px solid rgb(81, 174, 251);
+      }
+
+      & > * {
+        margin-right: 10px;
+      }
+    }
+  }

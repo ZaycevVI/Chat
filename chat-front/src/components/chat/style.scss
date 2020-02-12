@@ -1,0 +1,46 @@
+@import '../../styles/variables';
+
+.chat__block {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  .anticon {
+    opacity: 0.6;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .chat {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid $border;
+    display: flex;
+    width: 80vw;
+    height: 80vh;
+    margin: 20px auto;
+    position: relative;
+
+    &__content {
+      width: 100%;
+
+      &-messages {
+        padding: 20px 10px;
+        position: relative;
+        overflow: auto;
+        height: calc(100% - 59px - 72px);
+      }
+    }
+  }
+}
+
+.ant-empty {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  margin: auto 0;
+}
