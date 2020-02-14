@@ -2,7 +2,7 @@ import React from "react";
 import DialogItem from 'components/dialog-item';
 import { Empty } from "antd";
 
-function DialogItems({ dialogs, selectedUser, onClick }) {
+function DialogItems({ dialogs, selectedThread, onClick }) {  
   return (
     <>
       {dialogs && dialogs.length ? (
@@ -11,7 +11,7 @@ function DialogItems({ dialogs, selectedUser, onClick }) {
             key={i}
             message={d}
             isMyLast={i % 2 === 0}
-            isSelected={d.user._id === selectedUser._id}
+            isSelected={d.user._id === (selectedThread && selectedThread.user._id) }
             onClick={onClick}
           />
         ))

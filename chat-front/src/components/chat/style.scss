@@ -27,13 +27,6 @@
 
     &__content {
       width: 100%;
-
-      &-messages {
-        padding: 20px 10px;
-        position: relative;
-        overflow: auto;
-        height: calc(100% - 59px - 72px);
-      }
     }
   }
 }
@@ -41,6 +34,7 @@
 .ant-empty {
   width: 100%;
   position: absolute;
-  top: 50%;
+  top: 45%;
+  left: 0;
   margin: auto 0;
 }

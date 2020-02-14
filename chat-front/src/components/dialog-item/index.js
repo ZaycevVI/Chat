@@ -7,7 +7,7 @@ import classNames from 'classnames';
 
 function DialogItem({ message, isMyLast, isSelected, onClick }) {
   return (
-    <div className={classNames("dialog__item", {"dialog__item--selected": isSelected})} onClick={() => {onClick(message.user)}}>
+    <div className={classNames("dialog__item", {"dialog__item--selected": isSelected})} onClick={() => {onClick(message.user._id)}}>
       <div className="dialog__item-avatar">
         <Avatar user={message.user}></Avatar>
         {message.user.isOnline && <div className="dialog__item-online"></div>}

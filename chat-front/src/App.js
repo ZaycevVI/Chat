@@ -1,32 +1,13 @@
 import React from "react";
-import Auth from "pages/auth";
-import TextMsg from "components/message/text";
-import DialogItem from "components/dialog-item";
-import TypingBlock from "components/typing-block";
-import AudioMsg from "components/message/audio";
-import Chat from "components/chat";
+import Auth from 'pages/auth';
+import Home from 'pages/home';
+import AudioMsg from 'components/message/audio';
 
 function App() {
-  
-
   return (
     <div className="app">
-      <Chat ></Chat>
-
-      {/* <TypingBlock name="Vasilii" />
-      {dialogs.map(d => (
-        <DialogItem
-          message={d}
-          unreadAmount={Math.floor(Math.random() * 2)}
-          isMyLast={getRandomBool()}
-        />
-      ))}
-       */}
-      {/* <Auth /> */}
-      {/* {messages.map(m => (
-        <TextMsg message={m} isMe={getRandomBool()} />
-      ))}
-       */}
+      <Auth></Auth>
+      <Home></Home>
       {/* <AudioMsg
         message={{
           text:
@@ -37,7 +18,7 @@ function App() {
           user: {
             _id: "935f1f77bcf86cd799439011",
             img: null,
-            name: "Pasha"
+            name: "Pasha" 
           }
         }}
         isMe={false}

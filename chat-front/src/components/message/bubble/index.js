@@ -13,18 +13,6 @@ function Message({ message, isMe, children }) {
       <div className="message__info">
         <div className="message__avatar">
           <Avatar user={message.user}></Avatar>
-          {/* {message.user.img ? (
-            <img src={message.user.img} alt="avatar"></img>
-          ) : (
-            <div
-              className="random-avatar"
-              style={{
-                background: `linear-gradient(${getAvatar(message.user._id).join(",")})`
-              }}
-            >
-              {message.user.name && message.user.name[0].toUpperCase()}
-            </div>
-          )} */}
         </div>
         <div className="message__content">{children}</div>
         <Icon isRead={message.isRead}></Icon>

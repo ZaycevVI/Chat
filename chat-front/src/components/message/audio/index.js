@@ -14,7 +14,7 @@ function getSvg(isPlaying) {
 function AudioMsg({ message, isMe }) {
   const audioRef = useRef(null);
 
-  const [audioSettings, setAudionSettings] = useState({
+  const [audioSettings, setAudioSettings] = useState({
     duration: 0,
     isPlaying: false,
     maxDuration: null
@@ -24,31 +24,32 @@ function AudioMsg({ message, isMe }) {
     const duration = e.currentTarget.currentTime;
 
     duration - audioSettings.duration >= 0.3 &&
-      setAudionSettings({ ...audioSettings, duration });
+      setAudioSettings(state => ({ ...state, duration }));
   };
 
-  const onEnded = e => {
-    setAudionSettings({ ...audioSettings, duration: 0, isPlaying: false });
-  };
+  const onEnded = () =>
+    setAudioSettings(state => ({ ...state, duration: 0, isPlaying: false }));
 
   const onLoadMetadata = e => {
-    setAudionSettings({
+    setAudioSettings({
       ...audioSettings,
       maxDuration: e.srcElement.duration
     });
   };
 
   useEffect(() => {
-    audioRef.current.addEventListener("timeupdate", onTimeUpdate);
-    audioRef.current.addEventListener("loadedmetadata", onLoadMetadata);
-    audioRef.current.addEventListener("ended", onEnded);
+    const { current } = audioRef;
+    console.count()
+    current.addEventListener("timeupdate", onTimeUpdate);
+    current.addEventListener("loadedmetadata", onLoadMetadata);
+    current.addEventListener("ended", onEnded);
 
     return () => {
-      audioRef.current.removeEventListener("timeupdate", onTimeUpdate);
-      audioRef.current.removeEventListener("loadedmetadata", onLoadMetadata);
-      audioRef.current.removeEventListener("ended", onEnded);
+      current.removeEventListener("timeupdate", onTimeUpdate);
+      current.removeEventListener("loadedmetadata", onLoadMetadata);
+      current.removeEventListener("ended", onEnded);
     };
-  });
+  }, []);
 
   const onPlayHandler = () => {
     const { current } = audioRef;
@@ -57,14 +58,11 @@ function AudioMsg({ message, isMe }) {
     if (isPlaying) {
       current.pause();
       duration = current.currentTime = 0;
-      isPlaying = false;
     } else {
       current.play();
     }
 
-    setAudionSettings(state => {
-      return { ...state, isPlaying: !state.isPlaying, duration };
-    });
+    setAudioSettings(state => ({ ...state, isPlaying: !isPlaying, duration }));
   };
 
   const classes = classNames("audio", { "audio--is-me": isMe });

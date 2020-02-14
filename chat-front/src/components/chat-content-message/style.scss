@@ -1,6 +1,18 @@
 .chat__content-messages {
-    padding: 20px 10px;
-    position: relative;
-    overflow: auto;
-    height: calc(100% - 59px - 72px);
+  padding: 20px 10px;
+  position: relative;
+  overflow: auto;
+  height: calc(100% - 59px - 72px);
+}
+
+.ant-spin {
+    position: absolute;
+    top: 45%;
+}
+
+.typing {
+  clear: both;
+  text-align: center;
+  width: 100%;
+  color: rgb(206, 198, 198);
 }

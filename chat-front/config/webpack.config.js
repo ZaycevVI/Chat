@@ -310,6 +310,10 @@ module.exports = function(webpackEnv) {
         assets: resolveApp('src/assets'),
         hocs: resolveApp('src/hocs'),
         helpers: resolveApp('src/utils/helpers'),
+        services: resolveApp('src/utils/services'),
+        reducers: resolveApp('src/redux/reducers'),
+        actions: resolveApp('src/redux/actions'),
+        creators: resolveApp('src/redux/creators'),
 
         // Allows for better profiling with ReactDevTools
         ...(isEnvProductionProfile && {

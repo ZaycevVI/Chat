@@ -1,10 +1,13 @@
 @import '~antd/dist/antd.css';
 
 body {
-    background-color: rgba(227, 248, 252, 0.438);
+    background-color: rgba(178, 186, 189, 0.404);
 }
 
 .app, #root {
     height: 100%;
 }
 
+.clear-fix {
+    clear: both;
+  }
