@@ -5,7 +5,7 @@ const userRouting = require("./routing/user");
 const messageRouting = require("./routing/message");
 const dialogRouting = require("./routing/dialog");
 const errorHandler = require("./middleware/error-handler");
-const auth = require("./utils/helpers/auth");
+const {auth} = require("./utils/helpers/auth");
 const loggerMiddleware = require('./middleware/logger')
 const app = express();
 

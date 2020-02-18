@@ -12,5 +12,10 @@ module.exports = {
             controller: UserController.registration,
             method: "post"
         },
+        {
+            url: "/token",
+            controller: UserController.token,
+            method: "post"
+        },
     ]
 }

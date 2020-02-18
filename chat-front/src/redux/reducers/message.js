@@ -36,9 +36,10 @@ export default (state = initState, { type, payload }) => {
     case CONSTANT.MESSAGE_SUBMIT:
       return {
         ...state,
-        messages: [...state.messages, payload] 
+        messages: [...state.messages, payload],
+        msgInput: ''
       };
-
+      
     default:
       return state;
   }
