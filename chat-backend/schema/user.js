@@ -9,10 +9,10 @@ const userSchema = new Schema({
   avatar: { type: String, default: null },
   isOnline: { type: Boolean, default: false },
   email: { type: String, validate: emailValidator },
-  password: { type: String },
-  salt: { type: String, required: true },
-  confirmed: { type: Boolean, default: false },
-  confirmedHash: String,
+  password: { type: String, select: false },
+  salt: { type: String, required: true, select: false },
+  confirmed: { type: Boolean, default: false, select: false },
+  confirmedHash: { type: String, select: false },
   refreshToken: String
 });
 
@@ -24,8 +24,8 @@ userSchema.methods.toAuthJson = function() {
     _id: this._id,
     email: this.email,
     expiresIn: Date.now() + expiresIn,
-    accessToken: generateJWT(this, expiresIn / 1000),
-    refreshToken: generateJWT(this, refreshExpireIn / 1000)
+    accessToken: generateJWT(this, expiresIn),
+    refreshToken: generateJWT(this, refreshExpireIn)
   };
 };
 

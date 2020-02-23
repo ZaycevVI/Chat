@@ -6,11 +6,21 @@ class MessageService {
   }
 
   async getByDialogId(dialogId) {
-    return (await Message.find({ dialogId }).exec()) || [];
+    return (
+      (await Message.find({ dialogId })
+        .populate("userId")
+        .populate("dialogId")
+        .exec()) || []
+    );
   }
 
   async getLastMessage(dialogId) {
-    const [lastMsg] = await Message.find({ dialogId }).sort({ date: -1 }).limit(1).exec();
+    const [lastMsg] = await Message.find({ dialogId })
+      .sort({ date: -1 })
+      .limit(1)
+      .populate("userId")
+      .populate("dialogId")
+      .exec();
 
     return lastMsg || null;
   }

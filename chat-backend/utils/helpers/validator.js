@@ -5,7 +5,8 @@ function emailValidator(email) {
 }
 
 function passwordValidator(password) {
-  return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password);
+  //     /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/
+  return !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password);
 }
 
 function nameValidator(name) {

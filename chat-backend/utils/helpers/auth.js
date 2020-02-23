@@ -1,5 +1,6 @@
 const jwt = require("express-jwt");
 const jwtToken = require("jsonwebtoken");
+const config = require("../../config");
 
 const getTokenFromHeaders = req => {
   const {
@@ -10,29 +11,28 @@ const getTokenFromHeaders = req => {
 
 const auth = {
   required: jwt({
-    secret: "secret",
+    secret: config.secret,
     userProperty: "currentUser",
     getToken: getTokenFromHeaders,
     property: "user"
   }),
   optional: jwt({
-    secret: "secret",
+    secret: config.secret,
     userProperty: "currentUser",
     getToken: getTokenFromHeaders,
     credentialsRequired: false,
   })
 };
 
-const secret = "secret";
-
 function generateJWT(user, expiration) {
     return jwtToken.sign(
       {
         email: user.email,
-        id: user._id
+        id: user._id,
+        expiration: Date.now() + expiration
       },
-      secret,
-      { expiresIn: expiration }
+      config.secret,
+      { expiresIn: (expiration / 1000) }
     );
   }
 

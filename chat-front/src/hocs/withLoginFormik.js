@@ -1,5 +1,5 @@
 import { withFormik } from "formik";
-import {loginValidation} from "helpers/form-validator";
+import { loginValidation } from "helpers/form-validator";
 
 const withLoginFormik = withFormik({
   mapPropsToValues: () => ({ email: "", password: "" }),
@@ -10,11 +10,13 @@ const withLoginFormik = withFormik({
     return errors;
   },
 
-  handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+  handleSubmit: async (
+    { email, password },
+    { props: { login, history }, setSubmitting }
+  ) => {
+    await login(email, password);
+    history.push("/home");
+    setSubmitting(false);
   },
 
   displayName: "LoginForm"

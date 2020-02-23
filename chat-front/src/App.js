@@ -1,13 +1,23 @@
 import React from "react";
-import Auth from 'pages/auth';
-import Home from 'pages/home';
-import AudioMsg from 'components/message/audio';
+import Auth from "pages/auth";
+import Home from "pages/home";
+import AuthRequired from "hocs/auth-required";
+import NoAuthRequired from "hocs/no-auth-required";
+import ErrorHandler from "hocs/error-handler";
+import userService from 'services/user-service';
+// import AudioMsg from 'components/message/audio';
 
 function App() {
   return (
     <div className="app">
-      <Auth></Auth>
-      <Home></Home>
+      <ErrorHandler>
+        <NoAuthRequired>
+          <Auth></Auth>
+        </NoAuthRequired>
+        <AuthRequired>
+          <Home></Home>
+        </AuthRequired>
+      </ErrorHandler>
       {/* <AudioMsg
         message={{
           text:

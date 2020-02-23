@@ -25,13 +25,11 @@ class DialogService {
   }
 
   async getDialogsByUserId(id) {
-    const ignoredUserFields = "-password -salt -confirmed -confirmedHash -__v";
-
     const dialogs = await Dialog.find({
       $or: [{ userFrom: id }, { userTo: id }]
     })
-      .populate("userFrom", ignoredUserFields)
-      .populate("userTo", ignoredUserFields)
+      .populate("userFrom")
+      .populate("userTo")
       .exec();
 
     return dialogs || [];

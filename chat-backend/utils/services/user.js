@@ -4,12 +4,11 @@ const generateHash = require("../helpers/hash");
 const { passwordValidator } = require("../../utils/helpers/validator");
 const jwtToken = require("jsonwebtoken");
 const { generateJWT } = require("../../utils/helpers/auth");
-const expiresIn = 1000 * 60 * 15; // 15 mins
-const refreshExpireIn = 1000 * 60 * 1440 * 15; // 15 days
+const config = require('../../config')
 
 class UserService {
   async login(email, password) {
-    const user = await User.findOne({ email }).exec();
+    const user = await User.findOne({ email }).select('+password +salt').exec();
     const passwordHash = generateHash(password, user.salt);
 
     if (user.password !== passwordHash) {
@@ -40,11 +39,11 @@ class UserService {
   }
 
   async refreshToken(token) {
-    const jwt = jwtToken.verify(token, "secret");
+    const jwt = jwtToken.verify(token, config.secret);
     const user = { id: jwt.id, email: jwt.email };
 
-    const accessToken = generateJWT(user, expiresIn / 1000);
-    const refreshToken = generateJWT(user, refreshExpireIn / 1000);
+    const accessToken = generateJWT(user, config.expireInMs);
+    const refreshToken = generateJWT(user, config.expireRefreshInMs);
 
     return {
       accessToken,

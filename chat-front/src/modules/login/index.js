@@ -1,9 +1,11 @@
 import React from "react";
-import { Form, Button } from "antd";
+import { Form, Button, Spin } from "antd";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import withLoginFormik from "hocs/withLoginFormik";
 import FormInput from "components/form-input";
+import { connect } from "react-redux";
+import { login } from "actions/auth";
 
 function LoginForm(props) {
   const {
@@ -14,9 +16,10 @@ function LoginForm(props) {
     handleBlur,
     handleSubmit,
     isValid,
-    dirty
+    dirty,
+    isSubmitting,
+    login
   } = props;
-
   return (
     <>
       <h1>Login to your account</h1>
@@ -39,15 +42,17 @@ function LoginForm(props) {
           type="password"
         />
         <Form.Item>
-          <Button
-            disabled={!isValid || !dirty}
-            type="primary"
-            htmlType="submit"
-            size="large"
-            className="login-form-button"
-          >
-            Log in
-          </Button>
+          <Spin spinning={isSubmitting}>
+            <Button
+              disabled={!isValid || !dirty}
+              type="primary"
+              htmlType="submit"
+              size="large"
+              className="login-form-button"
+            >
+              Log in
+            </Button>
+          </Spin>
           <Link to="/registration">Registration</Link>
         </Form.Item>
       </Form>
@@ -55,6 +60,13 @@ function LoginForm(props) {
   );
 }
 
+const mapDispatchToProps = {
+  login
+};
+
 const WrappedLoginForm = Form.create({ name: "login" })(LoginForm);
 
-export default withLoginFormik(WrappedLoginForm);
+export default connect(
+  null,
+  mapDispatchToProps
+)(withLoginFormik(WrappedLoginForm));

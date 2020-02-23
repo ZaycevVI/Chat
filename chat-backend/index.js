@@ -7,10 +7,13 @@ const dialogRouting = require("./routing/dialog");
 const errorHandler = require("./middleware/error-handler");
 const {auth} = require("./utils/helpers/auth");
 const loggerMiddleware = require('./middleware/logger')
+const cors = require('cors')
+const config = require('./config')
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 app.use(loggerMiddleware);
 app.use(errorHandler);
 
@@ -25,7 +28,7 @@ app.listen(3027, function() {
 function routeRegistration(...routeConfig) {
   routeConfig.forEach(conf => {
     conf.routes.forEach(r =>
-      app[r.method](r.url, r.auth ? auth.required : auth.optional, r.controller)
+      app[r.method](`${config.prefix}/${r.url}`, r.auth ? auth.required : auth.optional, r.controller)
     );
   });
 }

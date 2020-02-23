@@ -1,10 +1,12 @@
 import "./style.scss";
 import React from "react";
-import { Form, Button } from "antd";
+import { Form, Button, Spin } from "antd";
 import { Link } from "react-router-dom";
 import withRegistrationFormik from "hocs/withRegistrationFormik";
 import FormInput from "components/form-input";
-import ConfirmRegistration from 'components/email-confirm-registration';
+import ConfirmRegistration from "components/email-confirm-registration";
+import { registration } from "actions/auth";
+import { connect } from "react-redux";
 
 function Registration(props) {
   const isSuccess = false;
@@ -16,7 +18,9 @@ function Registration(props) {
     handleBlur,
     handleSubmit,
     isValid,
-    dirty
+    dirty,
+    isSubmitting,
+    registration
   } = props;
 
   return (
@@ -39,7 +43,7 @@ function Registration(props) {
             onBlur={handleBlur}
             onChange={handleChange}
             placeholder="Username"
-          />  
+          />
           <FormInput
             validity={{ touched, errors, key: "password" }}
             iconType="lock"
@@ -48,7 +52,7 @@ function Registration(props) {
             onBlur={handleBlur}
             onChange={handleChange}
             placeholder="Password"
-          />  
+          />
           <FormInput
             validity={{ touched, errors, key: "confirmPassword" }}
             iconType="lock"
@@ -57,22 +61,34 @@ function Registration(props) {
             onBlur={handleBlur}
             onChange={handleChange}
             placeholder="Confirm your password"
-          /> 
+          />
           <Form.Item>
-            <Button
-              disabled={!isValid || !dirty}
-              type="primary"
-              htmlType="submit"
-            >
-              Register
-            </Button>
+            <Spin spinning={isSubmitting}>
+              <Button
+                disabled={!isValid || !dirty}
+                type="primary"
+                htmlType="submit"
+              >
+                Register
+              </Button>
+            </Spin>
             <Link to="/login">Already have account?</Link>
           </Form.Item>
         </Form>
-      ) : <ConfirmRegistration/>}
+      ) : (
+        <ConfirmRegistration />
+      )}
     </>
   );
 }
 
+const mapDispatchToProps = {
+  registration
+};
+
 const WrappedRegistrationForm = Form.create({ name: "register" })(Registration);
-export default withRegistrationFormik(WrappedRegistrationForm);
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withRegistrationFormik(WrappedRegistrationForm));

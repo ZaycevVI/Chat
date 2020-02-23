@@ -1,0 +1,8 @@
+{
+    "dbConnection": "mongodb://localhost:27017/chat",
+    "port": 3027,
+    "prefix": "/api",
+    "secret": "zghdZ905mH",
+    "expireInMs": 90000,
+    "expireRefreshInMs": 129600000
+}

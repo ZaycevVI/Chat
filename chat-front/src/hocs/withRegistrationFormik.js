@@ -1,8 +1,13 @@
 import { withFormik } from "formik";
-import {registrationValidation} from "helpers/form-validator";
+import { registrationValidation } from "helpers/form-validator";
 
 const withRegistrationFormik = withFormik({
-  mapPropsToValues: () => ({ name: "", password: "", confirmPassword: "", email: "" }),
+  mapPropsToValues: () => ({
+    name: "",
+    password: "",
+    confirmPassword: "",
+    email: ""
+  }),
   validate: values => {
     const errors = {};
     registrationValidation(values, errors);
@@ -10,11 +15,13 @@ const withRegistrationFormik = withFormik({
     return errors;
   },
 
-  handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+  handleSubmit: async (
+    { email, password, name },
+    { props: { registration, history }, setSubmitting }
+  ) => {
+    await registration(name, email, password)
+    history.push("/home");
+    setSubmitting(false);
   },
 
   displayName: "RegistrationForm"
